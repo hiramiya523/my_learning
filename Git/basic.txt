@@ -61,3 +61,13 @@ git diff hoge.txt
 
 #git add後の差分
 git diff --staged
+
+### リモートリポジトリにpushz(personal access tokensの認証が必要)
+git remote add origin https://hogeリポ.git   // リポジトリの登録
+git push -u origin master // -uを初回につけると、次回以降git push で実行可能
+
+### コマンドにエイリアスをつける
+git congig --global alias.ci commit
+git config --global alias.st status
+git config --global alias.br branch
+git config --global alias.co checkout
