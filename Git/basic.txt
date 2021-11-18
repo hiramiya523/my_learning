@@ -71,3 +71,9 @@ git congig --global alias.ci commit
 git config --global alias.st status
 git config --global alias.br branch
 git config --global alias.co checkout
+// global はｐｃ全体の設定と考えてよいhomeディレクトリ下に設定
+
+### バージョン管理から外す
+.gitignoreファイルに指定する。
+# から始まる行はコメント
+ファイル名を指定、ディレクトリ以下を指定、*指定も可能
