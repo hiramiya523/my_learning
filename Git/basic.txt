@@ -77,3 +77,20 @@ git config --global alias.co checkout
 .gitignoreファイルに指定する。
 # から始まる行はコメント
 ファイル名を指定、ディレクトリ以下を指定、*指定も可能
+
+### ファイルの変更を取り消す(ワークツリーの状態をステージの状態に合わせる)
+git checkout -- hoge.txt
+git checkout -- <dir>
+// 全変更を取り消す
+git checkout -- .
+
+
+### ステージにaddした変更を取り消す（ワークツリーも戻すには上記のコマンドを実施）
+git reset HEAD <filex>
+git reset HEAD <dir>
+git reset HEAD .
+// HEADは最新のもの
+
+
+### 直前のコミットをやり直す
+git commit --amend
