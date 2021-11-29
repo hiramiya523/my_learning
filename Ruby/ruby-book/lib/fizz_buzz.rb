@@ -23,9 +23,11 @@ puts %q!He said, "Don't speak."!
 # 区切り文字は!でなくとも良い
 puts %Q{"Bye."}
 
+name = 'Ailce'
 # ヒアドキュメント
 a = <<test
 これはヒアドキュメントです。
 複数行に渡る長い文字列を作成するのに便利です。
+文字展開も有効です。名前は#{name}
 test
 puts a

@@ -1,0 +1,140 @@
+# imageのダウンロード
+docker pull hwllo-world(リポジトリ名)
+
+# ダウンロードimageの確認
+docker images
+
+# コンテナの作成
+docker run <ダウンロードしたimage>
+
+# コンテナの確認
+docker ps // アクティブなコンテナのみ表示
+docker ps -a  // 全てのコンテナを確認
+
+# ubuntuのbashプログラムを起動
+docker run -it ubuntu bash
+// iimageがなければpullしてきてくれる
+exitでコンテナから抜ける
+
+# コンテナの再起動
+docker restart <id or name>
+
+# コンテナのbashを再度起動
+docker exec -it <container> <実行するプログラム>
+docker exec -it hogehoge bash
+
+# detach
+ctrl+p+q
+
+# exit とdetachの違い
+exit : コンテナのプロセスを切る
+detach: プロセスを残す
+
+# detach後、元のプロセスに入る
+docker attach <プロセスID>
+
+# 変更したコンテナからimageを作成する
+docker commit <id> <newName:tagName>
+
+# imageの名前は、"repository名:TAG名"のこと
+
+#＃＃ docker hubにリポジトリを作成する
+imageの名前をリポジトリの名前に合わせなくてはいけない。
+push先を探すときにiimage名を使うため
+
+＃image名を変更する
+docker tag <souurce> <target>
+docker tag ubuntu:apdated hiramiya523/my-first-repo
+
+#push
+docker push hiramiya523/my-first-repo
+
+### imageを削除
+docker rmi
+
+### docker run = create + start
+docker create <image> // コンテナの作成
+docker start <image> // デフォルトコマンドの実行、exit
+
+# docker startではデフォルトコマンドが実行されないので実行したい時は、
+docker start -a <コンテナid>
+
+# デフォルトコマンドは, docker ps -a の出力結果のCOMANDから確認可能
+
+# -it とは
+-i: インプット可能
+-t: 表示が綺麗になる
+
+
+### コンテナの削除(stopしてから)
+docker stop <コンテナid> // spase で複数選択可能
+docker rm <コンテナID> // 削除
+
+docker system prune  // 停止している、全てのコンテナ全削除！！(便利)
+
+＃＃＃ コンテナは他のコンテナから独立している
+// ⌘Tで新しいターミナルを開ける
+// ctrl+tabでタブを切り替え
+
+### コンテナに名前をつける
+docker run --name <name> <image>
+// 名前をつけるのは、
+常駐させたいコンテナの場合、　
+共有サーバで使う時、他のプログラムで使う時
+
+＃　detached mode と foreground mode
+docker run -d <image> // コンテナを起動後にdetach(切り離し)する。バックグラウンドで動かす。
+// detached mode以外をforegorund mode 
+
+# コンテナをExit後に削除する(一回きりのコンテナ)
+docker run --rm
+
+### docker fileとは
+docker imageの設計図。
+txtファイル
+INSTRACTION argumentsの形で記載していく
+
+### Dockerfileという名前のファイルを作る（naming convention:命名規則)
+docker build <director> or docker build  # 基本はdockerファイルがあるディレクトリに移動して . 指定でビルド
+docker build -t <name> <dir>  // 名前をつける。初期はnone
+ex) docker build -t new-ubuntu:latest
+
+# docker images -f dangling=true // -f はフィルタ
+
+### run
+Linuxのコマンドを実行
+RUN毎にlayerが作られる
+
+### imageファイルを小さくしたい
+ベストプラクティス：imageのlayer数は最小限にする。
+Layerを作るのは RUN, COPY, ADD の３つ
+
+## 小さくするには
+コマンドを && で繋げる
+複数の引数していで一括installで、バックスラッシュで改行してみやすく
+
+# ubuntuでは、apt-get(またはapt)というコマンドでぱっけーしを管理する
+apt-get update // 新しいパッケージリストを取得
+apt-get install <package>  // <package> をインストール
+
+＃＃＃　ビルド後に必要なパッケージをインストールしたいときに、キャッシュを活用すれば再ビルドしなくて追加できる
+FROM ubuntu:latest
+RUN apt-get update
+RUN apt-get install \
+xxx \
+yyy \
+zzz
+RUN apt-get install new!!  // 新しいLayerを追加で再ビルド不要
+
+### CMD
+デフォルトコマンドを設定
+CMDは、Layerを作らない
+
+### docker buildで指定したフォルダをビルドコンテキストという
+
+### COPYで、ディレクトリのファイルをコンテナに反映させる
+COPY <src> <dest>
+
+### ADD
+単純にファイルやフォルダをコピーする場合はCOPYを使用。
+tarの圧縮ファイルをコピーして解凍するときはADDを使う。ビルド時に解凍までされる。
