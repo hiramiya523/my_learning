@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>タイトル</title>
+
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+
+<body>
+    <div class="frame">
+        <h1 class="frame__title">JavaScript</h1>
+
+        <div class="frame__inner">
+
+            <script>
+                // 正規表現
+                // //g(オプション)のフォーマット
+                const zip_pattern = /^\d{3}-?\d{4}$/g;
+                let zip = "123-565";
+
+                // regexObj.test(str)で判定
+                if(zip_pattern.test(zip)){
+                    document.write("正しい入力です。")
+                }else{
+                    document.write("不正な形式です。")
+                }
+            </script>
+
+        </div>
+    </div>
+</body>
+
+</html>

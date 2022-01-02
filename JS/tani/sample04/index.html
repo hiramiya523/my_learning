@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>タイトル</title>
+
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+
+<body>
+    <div class="frame">
+        <h1 class="frame__title">JavaScript</h1>
+
+        <div class="frame__inner">
+            <script>
+                // クラス
+                class Item{
+                    // コンストラクター
+                    constructor(price){
+                        // プロパティを定義
+                        this.price = price;
+                    }
+
+                    getTax(){
+                        return Math.round(this.price * (10/100));
+                    }
+                }
+
+                // 入力
+                const price =parseInt(prompt("商品の金額を入力してください。"));
+                let item = new Item(price);
+                document.write(item.getTax());
+            </script>
+
+        </div>
+    </div>
+</body>
+
+</html>

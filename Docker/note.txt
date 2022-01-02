@@ -16,7 +16,7 @@ docker run -it ubuntu bash
 // iimageがなければpullしてきてくれる
 exitでコンテナから抜ける
 
-# コンテナの再起動
+# コンテナの再起動(detach後のExitedステータスの時)
 docker restart <id or name>
 
 # コンテナのbashを再度起動
@@ -30,7 +30,7 @@ ctrl+p+q
 exit : コンテナのプロセスを切る
 detach: プロセスを残す
 
-# detach後、元のプロセスに入る
+# detach後、attachで元のプロセスに入る
 docker attach <プロセスID>
 
 # 変更したコンテナからimageを作成する
@@ -79,12 +79,12 @@ docker system prune  // 停止している、全てのコンテナ全削除！�
 ### コンテナに名前をつける
 docker run --name <name> <image>
 // 名前をつけるのは、
-常駐させたいコンテナの場合、　
+常駐させたいコンテナの場合、
 共有サーバで使う時、他のプログラムで使う時
 
 ＃　detached mode と foreground mode
 docker run -d <image> // コンテナを起動後にdetach(切り離し)する。バックグラウンドで動かす。
-// detached mode以外をforegorund mode 
+// detached mode以外をforegorund mode
 
 # コンテナをExit後に削除する(一回きりのコンテナ)
 docker run --rm
@@ -95,11 +95,14 @@ txtファイル
 INSTRACTION argumentsの形で記載していく
 
 ### Dockerfileという名前のファイルを作る（naming convention:命名規則)
-docker build <director> or docker build  # 基本はdockerファイルがあるディレクトリに移動して . 指定でビルド
+docker build <director> or docker build . # 基本はdockerファイルがあるディレクトリに移動して . 指定でビルド
 docker build -t <name> <dir>  // 名前をつける。初期はnone
 ex) docker build -t new-ubuntu:latest
 
-# docker images -f dangling=true // -f はフィルタ
+# docker images -f dangling=true // -f はフィルタ, ここではダングリングが対象
+
+### FROM
+ベースとなるイメージを指定。大体はOSを指定。
 
 ### run
 Linuxのコマンドを実行
@@ -111,9 +114,9 @@ Layerを作るのは RUN, COPY, ADD の３つ
 
 ## 小さくするには
 コマンドを && で繋げる
-複数の引数していで一括installで、バックスラッシュで改行してみやすく
+複数の引数指定で一括installで、バックスラッシュで改行してみやすく
 
-# ubuntuでは、apt-get(またはapt)というコマンドでぱっけーしを管理する
+# ubuntuでは、apt-get(またはapt)というコマンドでパッケージを管理する
 apt-get update // 新しいパッケージリストを取得
 apt-get install <package>  // <package> をインストール
 
@@ -125,6 +128,10 @@ xxx \
 yyy \
 zzz
 RUN apt-get install new!!  // 新しいLayerを追加で再ビルド不要
+＝＞出来上がったら全部まとめる
+
+インタラクティブに確認をできないので-yを指定
+Run apt-get install -y
 
 ### CMD
 デフォルトコマンドを設定

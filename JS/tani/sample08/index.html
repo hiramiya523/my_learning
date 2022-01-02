@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>タイトル</title>
+
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+
+<body>
+    <div class="frame">
+        <h1 class="frame__title">JavaScript</h1>
+
+        <div class="frame__inner">
+            <p>メールアドレス: <input type="email" name="email" id="">
+            <!-- エラーメッセージ表示用 -->
+            <span style="color: #f33;"></span>
+            </p>
+            <script>
+                // idが指定されていない要素を取得したい場合クエリーセレクター
+                const email = document.querySelector("input[name='email']");
+                // focusが外れたイベント
+                email.addEventListener("blur", () => {
+                    if(email.value === ""){
+                        email.style.backgroundColor = "#fcc";
+                        email.nextElementSibling.innerHTML = "※ メールアドレスが未入力です。"
+                    }else{
+                        email.style.backgroundColor = "#fff";
+                        email.nextElementSibling.innerHTML = ""
+                    }
+
+                })
+            </script>
+
+        </div>
+    </div>
+</body>
+
+</html>

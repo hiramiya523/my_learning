@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="我の好きなもの、日々の生活を紹介">
+    <title>我の実態</title>
+</head>
+<body>
+    <h1>吾輩について</h1>
+    <h2>我の1日</h2>
+    <p>ひたすら寝ています</p>
+    <br>
+
+    <h2>朝食</h2>
+    <!-- ol で番号リスト -->
+    <ul>
+        <li>卵(3個)</li>
+        <li>醤油(大さじ１)</li>
+        <li>みりん(大さじ１))</li>
+    </ul>
+
+<!--
+    tr: table row(行)
+    th: table header
+    td: table data -->
+    <table border="1">
+        <!-- 初期状態だと枠線がないのでborder 指定 -->
+        <tr>
+            <!-- セルを結合 rowspanで縦結合も -->
+            <th colspan="2">ファンクラブ料金</th>
+        </tr>
+        <tr>
+            <th>ファンプラン</th>
+            <th>月額</th>
+        </tr>
+        <tr>
+            <td>超プレミアムプラン</td>
+            <td>8円</td>
+        </tr>
+        <tr>
+            <td>プレミアムプラン</td>
+            <td>-1000円</td>
+        </tr>
+    </table>
+
+    <!-- mailto: でメールクライアントが立ち上がる -->
+    <a href="mailto:test@example.com">お問合せしても無理</a>
+</body>
+</html>

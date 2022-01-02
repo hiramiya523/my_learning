@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+
+<body>
+    <div class="frame">
+        <h1 class="frame__title">JavaScript</h1>
+
+        <div class="frame__inner">
+            <!-- ここに、JavaScriptを記述します -->
+            <script>
+                const today = new Date();
+
+                let min = today.getMinutes(); // 現在 秒
+                let hour = today.getHours(); // 現在 時
+
+                // テンプレート文字列
+                document.write(`"${hour}時 ${min}分"`);
+
+            </script>
+
+        </div>
+    </div>
+</body>
+
+</html>
