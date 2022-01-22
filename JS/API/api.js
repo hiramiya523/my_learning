@@ -4,7 +4,7 @@
 
 // 素のJavaScriptでAjax
 const api_endpoint = "https://qiita.com/api/v2/authenticated_user/items";
-const token = "09a175c535ac84d83b0951693f2edc21bd30ae68"; // 個人のアクセストークンを利用
+const token = "XXXXXXX"; // 個人のアクセストークンを利用
 let out = document.getElementById("out");
 console.log(out);
 /**
