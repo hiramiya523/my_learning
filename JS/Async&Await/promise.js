@@ -68,7 +68,7 @@ new Promise((resolve) => {
         iaa++;
     }
     console.log(1);
-    // return iaa;
+    throw new Error("エラーが発生");
     resolve("a");
 })
 .then((val) => {
@@ -76,7 +76,8 @@ new Promise((resolve) => {
     reject(); // newした時にreject渡さなくても使える
 })
 .catch((val) => {
-    console.log("err")
+    console.log("chatchされたで!")
+    console.log(val)
     // catch後のthenは実行されない
 })
 .then((val) => {
