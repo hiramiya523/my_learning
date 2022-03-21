@@ -1,2 +1,6 @@
 secret.txt
 .DS_Store
+
+# docker のDBデータを対象外に
+./Docker/project/docker/db
+./Docker/DB/db-8-0
