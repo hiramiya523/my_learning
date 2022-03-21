@@ -1,0 +1,26 @@
+# Composer
+パッケージ管理
+
+docker run -d -p 80:80 --name my-apache-php-app -v "$PWD":/var/www/html php:7.2-apache
+
+docker run -d --name php-book -v "$PWD":/var/www/html -p 80:8 php:7.2-apache
+・-v $(pwd):/var/www/html はホストのカレントディレクトリ($pwd)
+をコンテナの/var/www/htmlディレクトリにマウントしている。(-vがマウントオプション)
+・-p 80:80は、ホストの80番ポートにコンテナの80番ポートをポートフォワードしている。
+
+
+実行できた
+docker run -d --name php-book php:7.2-apache
+docker run -d -p 80:80 --name php-book php:7.2-apache
+docker run -d -p 80:80 --name php-book -v C:\Users\hiram\Desktop\my_learning\PHP\php-book:/var/www/html php:7.2-apache
+
+なんかpwdだとマウントしてくれないみたい
+docker run -d -p 80:80 --name php-book -v ($PWD):/var/www/html php:7.2-apache
+
+
+＃コンテナの操作
+docker exec -it php-book bash : コンテナに入る
+ctrl+p, ctrl+qでコンテナから出る。
+
+
+docker restart php-book
