@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>条件付きレンダリング</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    
+    <div id = "app">
+        <!-- 表示条件 if, else -->
+        <div v-if="stock==0">売り切れです。</div>
+        <div v-else>{{price}}円</div>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                price: 0,
+                stock: 0
+            }
+        })
+
+        app.price = 100;
+        // コンソール上で、app.stock = 0;を実行で表示切替
+        app.stock = 1;
+    </script>
+    
+</body>
+</html>

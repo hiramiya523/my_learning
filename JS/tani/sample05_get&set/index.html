@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>タイトル</title>
+
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+
+<body>
+    <div class="frame">
+        <h1 class="frame__title">JavaScript</h1>
+
+        <div class="frame__inner">
+            <script>
+                class Calc{
+                    // プロパティが不要なメソッドは静的メソッドにすると便利
+                    static sum(num1, num2){
+                        return num1 + num2;
+                    }
+                }
+
+                document.write(Calc.sum(10,5));
+
+
+                // get, set
+                class Item{
+                    constructor(tax){
+                        // _が付いたプロパティに値をセット、ゲットする際にget,setを通す
+                        this._tax = tax;
+                    }
+
+                    set tax(tax){
+                        if(isFinite(tax)){
+                            this._tax = tax;
+                        }else{
+                            this._tax = 0;
+                        }
+                    }
+
+                    get tax(){
+                        return this._tax;
+                    }
+                }
+
+
+
+                let item = new Item("abc");
+                document.write(item.tax);
+            </script>
+
+        </div>
+    </div>
+</body>
+
+</html>
