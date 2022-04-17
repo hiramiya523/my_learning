@@ -1,0 +1,33 @@
+version: '3'
+
+# servicesでは全体の構成をするコンテナの設定をするという意味
+services:
+  web:
+    build: ./php-apache/
+    volumes:
+      - ./app:/var/www/html
+    ports:
+      - 8080:80
+    depends_on:
+      - mysql
+    container_name: php-apache
+
+  db:
+    image: mysql:8.0
+    volumes:
+      - db-store:/var/lib/mysql
+      # 起動しない
+      - ./mysql/init:/docker-entrypoint-initdb.d
+      - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASS}
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=${DB_PASS}
+      - TZ=${TZ}
+    container_name: mysql
+    ports:
+      - 3306:3306
+
+volumes:
+  db-store:
