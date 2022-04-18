@@ -27,7 +27,7 @@ services:
       - TZ=${TZ}
     container_name: mysql
     ports:
-      - 3306:3306
+      - 13306:13306
 
 volumes:
   db-store:
